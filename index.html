@@ -23,47 +23,15 @@
   --shadow: rgba(0,0,0,0.1);
 }
 
-body{
-  margin:0;
-  font-family:'Poppins', sans-serif;
-  background: var(--light);
-  color: var(--text-dark);
-  transition: background 0.3s, color 0.3s;
-}
-
-h1{
-  font-family:'Playfair Display', serif;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:2rem;
-}
-
+body{margin:0;font-family:'Poppins', sans-serif;background: var(--light);color: var(--text-dark);transition: background 0.3s, color 0.3s;}
+h1{font-family:'Playfair Display', serif;display:flex;align-items:center;gap:10px;font-size:2rem;}
 a{text-decoration:none;color:inherit;}
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background: var(--light);
-  padding:20px 10px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  border-bottom:1px solid #eee;
-  box-shadow: 0 2px 8px var(--shadow);
-  transition: background 0.3s, color 0.3s;
-}
+header{position:sticky;top:0;z-index:100;background: var(--light);padding:20px 10px;display:flex;flex-direction:column;align-items:center;border-bottom:1px solid #eee;box-shadow: 0 2px 8px var(--shadow);transition: background 0.3s, color 0.3s;}
 nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:15px;}
 nav a{font-size:14px;letter-spacing:1px;transition:0.3s;}
 nav a:hover{color: var(--main); font-weight:600; transform: scale(1.05);}
 .controls{margin:20px 0; display:flex; gap:10px; flex-wrap:wrap;}
-.controls input,.controls select,.controls button{
-  padding:10px;
-  border-radius:20px;
-  border:1px solid #ccc;
-  font-family:'Poppins', sans-serif;
-  transition: background 0.3s, color 0.3s, border 0.3s;
-}
+.controls input,.controls select,.controls button{padding:10px;border-radius:20px;border:1px solid #ccc;font-family:'Poppins', sans-serif;transition: background 0.3s, color 0.3s, border 0.3s;}
 .container{display:grid;grid-template-columns:1fr 300px;gap:30px;max-width:1200px;margin:auto;padding:30px;}
 @media(max-width:900px){.container{grid-template-columns:1fr}}
 @media(max-width:600px){
@@ -71,12 +39,7 @@ nav a:hover{color: var(--main); font-weight:600; transform: scale(1.05);}
   nav{flex-direction: column; gap:10px;}
   .controls{flex-direction: column;}
 }
-.post{
-  position: relative; overflow: hidden; border-radius:15px;
-  box-shadow:0 4px 12px var(--shadow);
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
-  background: var(--light);
-}
+.post{position: relative; overflow: hidden; border-radius:15px; box-shadow:0 4px 12px var(--shadow); transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s; background: var(--light);}
 .post:hover{transform: translateY(-5px); box-shadow: 0 8px 20px var(--shadow);}
 .post img{width:100%; display:block; border-radius:15px;}
 .post h2{color: var(--main); margin: 10px 15px; font-size:1.3rem;}
@@ -131,6 +94,8 @@ footer .social-icons a:hover{background:#e07a76;}
     <option value="breakfast">Breakfast</option>
     <option value="dessert">Dessert</option>
     <option value="beverage">Beverage</option>
+    <option value="lunch">Lunch</option>
+    <option value="dinner">Dinner</option>
   </select>
   <button id="dark">🌙</button>
 </div>
@@ -138,31 +103,8 @@ footer .social-icons a:hover{background:#e07a76;}
 
 <div class="container">
 
-<!-- POSTS -->
-<div id="posts">
-<div class="post" data-cat="breakfast">
-  <div class="category-icon"><i class="fas fa-bread-slice"></i></div>
-  <h2>Air Fryer Pepperoni Pizza Pockets <span class="star">⭐</span></h2>
-  <img src="images/pizza.jpg" alt="Air Fryer Pepperoni Pizza Pockets - Quick Breakfast Recipe">
-  <p>Quick comfort breakfast recipe... <a href="#" class="read">Read more</a></p>
-</div>
+<div id="posts"></div>
 
-<div class="post" data-cat="dessert">
-  <div class="category-icon"><i class="fas fa-cake-candles"></i></div>
-  <h2>Raspberry Chocolate Truffles <span class="star">⭐</span></h2>
-  <img src="images/truffles.jpg" alt="Raspberry Chocolate Truffles - Sweet Dessert">
-  <p>Sweet dessert for chocolate lovers... <a href="#" class="read">Read more</a></p>
-</div>
-
-<div class="post" data-cat="beverage">
-  <div class="category-icon"><i class="fas fa-cocktail"></i></div>
-  <h2>Pear Vanilla Gin Fizz <span class="star">⭐</span></h2>
-  <img src="images/gin-fizz.jpg" alt="Pear Vanilla Gin Fizz - Refreshing Drink">
-  <p>Refreshing drink recipe... <a href="#" class="read">Read more</a></p>
-</div>
-</div>
-
-<!-- Sidebar -->
 <aside class="sidebar">
 <h3>Welcome</h3>
 <p>Your ultimate culinary destination where flavor meets passion.</p>
@@ -171,12 +113,13 @@ footer .social-icons a:hover{background:#e07a76;}
 <span class="tag" onclick="filterTag('breakfast')">#Breakfast</span>
 <span class="tag" onclick="filterTag('dessert')">#Dessert</span>
 <span class="tag" onclick="filterTag('beverage')">#Beverage</span>
+<span class="tag" onclick="filterTag('lunch')">#Lunch</span>
+<span class="tag" onclick="filterTag('dinner')">#Dinner</span>
 </p>
 </aside>
 
 </div>
 
-<!-- Popup -->
 <div class="popup" id="popup">
 <div class="popup-content">
   <button class="close" onclick="popup.style.display='none'">&times;</button>
@@ -195,62 +138,90 @@ footer .social-icons a:hover{background:#e07a76;}
 </footer>
 
 <script>
-// Search & Filter
-const search=document.getElementById('search');
-const filter=document.getElementById('filter');
-const posts=document.querySelectorAll('.post');
-const popup=document.getElementById('popup');
-const ptitle=document.getElementById('ptitle');
+const postsContainer = document.getElementById('posts');
+const popup = document.getElementById('popup');
+const ptitle = document.getElementById('ptitle');
+const search = document.getElementById('search');
+const filter = document.getElementById('filter');
 
-function update(){
- const s=search.value.toLowerCase();
- const f=filter.value;
- posts.forEach(p=>{
-  const t=p.innerText.toLowerCase();
-  const c=p.dataset.cat;
-  p.style.display=(t.includes(s)&&(f==='all'||f===c))?'block':'none';
- })
+function getIcon(category){
+  switch(category){
+    case 'breakfast': return 'fas fa-bread-slice';
+    case 'dessert': return 'fas fa-cake-candles';
+    case 'beverage': return 'fas fa-cocktail';
+    case 'lunch': return 'fas fa-utensils';
+    case 'dinner': return 'fas fa-drumstick-bite';
+    default: return 'fas fa-utensils';
+  }
 }
-search.oninput=update; filter.onchange=update;
 
+// Load recipes from JSON
+fetch('recipes.json')
+  .then(res => res.json())
+  .then(recipes => {
+    recipes.forEach(recipe => {
+      const post = document.createElement('div');
+      post.className = 'post';
+      post.dataset.cat = recipe.category;
+      post.innerHTML = `
+        <div class="category-icon"><i class="${getIcon(recipe.category)}"></i></div>
+        <h2>${recipe.title} <span class="star">⭐</span></h2>
+        <img src="${recipe.image}" alt="${recipe.alt}">
+        <p>${recipe.description} <a href="#" class="read">Read more</a></p>
+      `;
+      postsContainer.appendChild(post);
+
+      const star = post.querySelector('.star');
+      const savedFavs = JSON.parse(localStorage.getItem('favorites')||'[]');
+      if(savedFavs.includes(recipe.title)) star.classList.add('active');
+      star.onclick = e=>{
+        e.stopPropagation();
+        star.classList.toggle('active');
+        let favs = JSON.parse(localStorage.getItem('favorites')||'[]');
+        if(star.classList.contains('active')) favs.push(recipe.title);
+        else favs = favs.filter(f=>f!==recipe.title);
+        localStorage.setItem('favorites', JSON.stringify(favs));
+      };
+
+      post.querySelector('.read').onclick = e=>{
+        e.preventDefault();
+        ptitle.innerText = recipe.title;
+        popup.classList.add('show');
+      };
+    });
+
+    // Initial filter/search
+    update();
+  });
+
+// Search & Filter
+function update(){
+  const s = search.value.toLowerCase();
+  const f = filter.value;
+  document.querySelectorAll('.post').forEach(p=>{
+    const t = p.innerText.toLowerCase();
+    const c = p.dataset.cat;
+    p.style.display = (t.includes(s) && (f==='all'||f===c)) ? 'block' : 'none';
+  });
+}
+search.oninput = update;
+filter.onchange = update;
 function filterTag(cat){filter.value=cat; update();}
 
-// Favorites
-const savedFavs = JSON.parse(localStorage.getItem('favorites') || '[]');
-posts.forEach(p => {
-  const title = p.querySelector('h2').innerText;
-  const star = p.querySelector('.star');
-  if(savedFavs.includes(title)) star.classList.add('active');
-  star.onclick = e=>{
-    e.stopPropagation();
-    star.classList.toggle('active');
-    let favs = JSON.parse(localStorage.getItem('favorites')||'[]');
-    if(star.classList.contains('active')) favs.push(title);
-    else favs=favs.filter(f=>f!==title);
-    localStorage.setItem('favorites', JSON.stringify(favs));
-  };
-  p.querySelector('.read').onclick = e=>{
-    e.preventDefault();
-    ptitle.innerText=title;
-    popup.classList.add('show');
-  };
-});
-popup.onclick = e => { if(e.target===popup) popup.classList.remove('show'); };
+// Popup close
+popup.onclick = e=>{ if(e.target===popup) popup.classList.remove('show'); };
 
-// Dark/Light Theme
+// Dark/Light theme
 const darkBtn = document.getElementById('dark');
 darkBtn.onclick = ()=>{
   document.body.classList.toggle('dark');
-  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  localStorage.setItem('theme', document.body.classList.contains('dark')?'dark':'light');
 };
-// Load theme
-if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
 
 // Close popup on ESC
-document.addEventListener('keydown', e => {
-  if(e.key==='Escape') popup.classList.remove('show');
-});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') popup.classList.remove('show'); });
 </script>
 
 </body>
-                                                             </html>
+</html>
