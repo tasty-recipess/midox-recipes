@@ -12,65 +12,82 @@
             background-color: #fffaf0;
             color: #333;
         }
+
         header {
             text-align: center;
-            padding: 60px 20px;
-            background-color: #ffecd1;
+            padding: 70px 20px;
+            background: linear-gradient(90deg, #ffecd1, #ffe6d4);
         }
+
         h1 {
             font-size: 3.5em;
             color: #FF5733;
             margin-bottom: 10px;
         }
+
         h1:hover {
             color: #FFA500;
             transform: scale(1.05);
             transition: all 0.3s ease;
         }
+
         p.tagline {
             font-size: 1.3em;
             color: #555;
         }
+
         main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
             padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
         }
+
         .recipe-card {
             background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-            margin: 15px;
-            width: 260px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .recipe-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
         }
+
         .recipe-card img {
             width: 100%;
-            height: 160px;
+            height: 180px;
             object-fit: cover;
         }
+
         .recipe-card h2 {
-            font-size: 1.3em;
-            margin: 10px;
+            font-size: 1.4em;
+            margin: 12px 15px 5px;
             color: #FF5733;
         }
+
         .recipe-card p {
-            font-size: 0.95em;
-            margin: 0 10px 15px;
+            font-size: 1em;
+            margin: 0 15px 15px;
             color: #555;
         }
+
         footer {
             text-align: center;
             padding: 20px;
             background-color: #ffecd1;
             color: #555;
             font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
         }
     </style>
 </head>
@@ -82,56 +99,80 @@
 
     <main>
         <div class="recipe-card">
-            <img src="https://via.placeholder.com/260x160.png?text=Spaghetti" alt="Spaghetti">
+            <img src="https://via.placeholder.com/250x180.png?text=Spaghetti" alt="Spaghetti">
             <h2>Classic Spaghetti</h2>
             <p>Quick spaghetti with fresh tomato sauce and herbs.</p>
         </div>
 
         <div class="recipe-card">
-            <img src="https://via.placeholder.com/260x160.png?text=Salad" alt="Salad">
-            <h2>Garden Salad</h2>
-            <p>Fresh vegetables with a light vinaigrette dressing.</p>
+            <img src="https://via.placeholder.com/250x180.png?text=Salad" alt="Salad">
+            <h2>Fresh Garden Salad</h2>
+            <p>Light and healthy salad with seasonal vegetables.</p>
         </div>
 
         <div class="recipe-card">
-            <img src="https://via.placeholder.com/260x160.png?text=Chocolate+Cake" alt="Chocolate Cake">
+            <img src="https://via.placeholder.com/250x180.png?text=Chocolate+Cake" alt="Chocolate Cake">
             <h2>Chocolate Cake</h2>
-            <p>Rich and moist cake perfect for dessert lovers.</p>
+            <p>Rich and moist chocolate cake for dessert lovers.</p>
         </div>
 
         <div class="recipe-card">
-            <img src="https://via.placeholder.com/260x160.png?text=Grilled+Chicken" alt="Grilled Chicken">
+            <img src="https://via.placeholder.com/250x180.png?text=Grilled+Chicken" alt="Grilled Chicken">
             <h2>Grilled Chicken</h2>
-            <p>Juicy chicken with herbs and spices, grilled to perfection.</p>
+            <p>Juicy chicken grilled with herbs and spices.</p>
         </div>
 
         <div class="recipe-card">
-            <img src="https://via.placeholder.com/260x160.png?text=Pancakes" alt="Pancakes">
+            <img src="https://via.placeholder.com/250x180.png?text=Pancakes" alt="Pancakes">
             <h2>Fluffy Pancakes</h2>
-            <p>Soft and airy pancakes for a perfect breakfast.</p>
+            <p>Soft and airy pancakes perfect for breakfast.</p>
         </div>
 
         <div class="recipe-card">
-            <img src="https://via.placeholder.com/260x160.png?text=Pizza" alt="Pizza">
+            <img src="https://via.placeholder.com/250x180.png?text=Pizza" alt="Pizza">
             <h2>Margherita Pizza</h2>
             <p>Classic pizza with fresh mozzarella and basil.</p>
         </div>
 
         <div class="recipe-card">
-            <img src="https://via.placeholder.com/260x160.png?text=Sushi" alt="Sushi">
+            <img src="https://via.placeholder.com/250x180.png?text=Sushi" alt="Sushi">
             <h2>Salmon Sushi</h2>
             <p>Delicate salmon sushi rolls with fresh rice and seaweed.</p>
         </div>
 
         <div class="recipe-card">
-            <img src="https://via.placeholder.com/260x160.png?text=Brownies" alt="Brownies">
+            <img src="https://via.placeholder.com/250x180.png?text=Brownies" alt="Brownies">
             <h2>Chocolate Brownies</h2>
             <p>Rich, fudgy brownies for chocolate lovers.</p>
+        </div>
+
+        <div class="recipe-card">
+            <img src="https://via.placeholder.com/250x180.png?text=Soup" alt="Soup">
+            <h2>Vegetable Soup</h2>
+            <p>Warm and comforting soup with seasonal vegetables.</p>
+        </div>
+
+        <div class="recipe-card">
+            <img src="https://via.placeholder.com/250x180.png?text=Burger" alt="Burger">
+            <h2>Classic Burger</h2>
+            <p>Juicy beef burger with fresh lettuce and cheese.</p>
+        </div>
+
+        <div class="recipe-card">
+            <img src="https://via.placeholder.com/250x180.png?text=Smoothie" alt="Smoothie">
+            <h2>Berry Smoothie</h2>
+            <p>Refreshing smoothie with mixed berries and yogurt.</p>
+        </div>
+
+        <div class="recipe-card">
+            <img src="https://via.placeholder.com/250x180.png?text=Steak" alt="Steak">
+            <h2>Grilled Steak</h2>
+            <p>Perfectly grilled steak with garlic and herbs.</p>
         </div>
     </main>
 
     <footer>
-        &copy; 2025 Delicious and Easy . All rights reserved.
+        &copy; 2025 Delicious and Easy by Bakka. All rights reserved.
     </footer>
 </body>
 </html>
