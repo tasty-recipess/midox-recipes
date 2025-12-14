@@ -54,6 +54,7 @@ nav a:hover{color: var(--main); font-weight:600; transform: scale(1.05);}
 @keyframes fadeIn{0%{opacity:0; transform: translateY(-20px);}100%{opacity:1; transform: translateY(0);}}
 .popup-content{background: var(--light);padding:25px;border-radius:15px;max-width:400px;position: relative;transition: background 0.3s, color 0.3s;}
 .popup-content button.close{position:absolute;top:10px;right:10px;border:none;background:none;font-size:18px;cursor:pointer;}
+.popup-content ul, .popup-content ol{margin-left:20px;}
 .star{cursor:pointer;float:right;opacity:.3}
 .star.active{opacity:1;}
 .dark{background:var(--dark);color:#f1f1f1;}
@@ -102,7 +103,6 @@ footer .social-icons a:hover{background:#e07a76;}
 </header>
 
 <div class="container">
-
 <div id="posts"></div>
 
 <aside class="sidebar">
@@ -117,14 +117,16 @@ footer .social-icons a:hover{background:#e07a76;}
 <span class="tag" onclick="filterTag('dinner')">#Dinner</span>
 </p>
 </aside>
-
 </div>
 
 <div class="popup" id="popup">
 <div class="popup-content">
   <button class="close" onclick="popup.style.display='none'">&times;</button>
   <h3 id="ptitle"></h3>
-  <p>Full recipe details can go here...</p>
+  <h4>Ingredients:</h4>
+  <ul id="pingredients"></ul>
+  <h4>Instructions:</h4>
+  <ol id="pinstructions"></ol>
 </div>
 </div>
 
@@ -141,6 +143,8 @@ footer .social-icons a:hover{background:#e07a76;}
 const postsContainer = document.getElementById('posts');
 const popup = document.getElementById('popup');
 const ptitle = document.getElementById('ptitle');
+const pingredients = document.getElementById('pingredients');
+const pinstructions = document.getElementById('pinstructions');
 const search = document.getElementById('search');
 const filter = document.getElementById('filter');
 
@@ -186,15 +190,17 @@ fetch('recipes.json')
       post.querySelector('.read').onclick = e=>{
         e.preventDefault();
         ptitle.innerText = recipe.title;
+
+        pingredients.innerHTML = recipe.ingredients.map(i=>`<li>${i}</li>`).join('');
+        pinstructions.innerHTML = recipe.instructions.map(i=>`<li>${i}</li>`).join('');
+
         popup.classList.add('show');
       };
     });
 
-    // Initial filter/search
     update();
   });
 
-// Search & Filter
 function update(){
   const s = search.value.toLowerCase();
   const f = filter.value;
@@ -207,19 +213,14 @@ function update(){
 search.oninput = update;
 filter.onchange = update;
 function filterTag(cat){filter.value=cat; update();}
-
-// Popup close
 popup.onclick = e=>{ if(e.target===popup) popup.classList.remove('show'); };
 
-// Dark/Light theme
 const darkBtn = document.getElementById('dark');
 darkBtn.onclick = ()=>{
   document.body.classList.toggle('dark');
   localStorage.setItem('theme', document.body.classList.contains('dark')?'dark':'light');
 };
 if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
-
-// Close popup on ESC
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') popup.classList.remove('show'); });
 </script>
 
