@@ -1,205 +1,180 @@
-            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Delicious and Easy</title>
+<title>Yummy Recipes – Demo</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #fffaf0;
-    color: #333;
-    transition: 0.3s;
+:root{
+  --main:#f2a7a0;
+  --dark:#1e1e1e;
+}
+body{margin:0;font-family:Arial,sans-serif;background:#fff;color:#333}
+a{text-decoration:none;color:inherit}
+
+/* HEADER */
+header{
+  display:flex;flex-direction:column;align-items:center;
+  padding:30px 10px;border-bottom:1px solid #eee
+}
+nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:15px}
+nav a{font-size:14px;letter-spacing:1px}
+
+/* LAYOUT */
+.container{display:grid;grid-template-columns:1fr 300px;gap:30px;max-width:1200px;margin:auto;padding:30px}
+@media(max-width:900px){.container{grid-template-columns:1fr}}
+
+/* POSTS */
+.post{margin-bottom:40px}
+.post img{width:100%;border-radius:10px}
+.post h2{color:var(--main)}
+
+/* SIDEBAR */
+.sidebar{font-size:14px;line-height:1.7}
+.sidebar h3{color:var(--main)}
+
+/* CONTROLS */
+.controls{margin:20px 0}
+.controls input,.controls select,.controls button{
+  padding:10px;border-radius:20px;border:1px solid #ccc;margin:5px
 }
 
-header {
-    text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(90deg, #ffecd1, #ffe6d4);
-}
+/* POPUP */
+.popup{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center}
+.popup-content{background:#fff;padding:25px;border-radius:15px;max-width:400px}
 
-h1 {
-    font-size: 3em;
-    color: #FF5733;
-}
+/* FAVORITE */
+.star{cursor:pointer;float:right;opacity:.3}
+.star.active{opacity:1}
 
-.controls {
-    margin-top: 20px;
-}
+/* DARK */
+.dark{background:var(--dark);color:#fff}
+.dark header{border-color:#444}
+.dark .popup-content{background:#2c2c2c}
 
-.controls input, .controls select, .controls button {
-    padding: 10px;
-    border-radius: 20px;
-    border: none;
-    margin: 5px;
-}
-
-main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 40px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.recipe-card {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.recipe-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.recipe-card h2 {
-    margin: 10px;
-    color: #FF5733;
-}
-
-.recipe-card p {
-    margin: 10px;
-}
-
-.star {
-    float: right;
-    cursor: pointer;
-    opacity: 0.3;
-}
-
-.star.active { opacity: 1; }
-
-/* Popup */
-.popup {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-
-.popup-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    max-width: 400px;
-    text-align: center;
-}
-
-/* Dark Mode */
-.dark {
-    background: #1e1e1e;
-    color: #fff;
-}
-
-.dark .recipe-card { background: #2c2c2c; }
-.dark header { background: #333; }
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #ffecd1;
-}
+footer{text-align:center;padding:20px;background:#f7b3ad;margin-top:40px}
 </style>
 </head>
 <body>
 
 <header>
-<h1>Delicious and Easy</h1>
-<p>Tasty recipes made simple!</p>
+<h1>Yummy Recipes</h1>
+<nav>
+<a href="#">BREAKFAST</a>
+<a href="#">LUNCH</a>
+<a href="#">DINNER</a>
+<a href="#">DESSERTS</a>
+<a href="#">BEVERAGES</a>
+<a href="#">CONTACT</a>
+</nav>
 
 <div class="controls">
-<input type="text" id="search" placeholder="Search recipes">
+<input id="search" placeholder="Search recipes">
 <select id="filter">
 <option value="all">All</option>
-<option value="main">Main</option>
+<option value="breakfast">Breakfast</option>
 <option value="dessert">Dessert</option>
-<option value="healthy">Healthy</option>
+<option value="beverage">Beverage</option>
 </select>
-<button id="darkBtn">🌙 Dark</button>
+<button id="dark">🌙</button>
 </div>
 </header>
 
-<main id="recipes">
-<div class="recipe-card" data-category="main">
-<img src="https://via.placeholder.com/250x180?text=Spaghetti">
-<h2>Classic Spaghetti <span class="star">⭐</span></h2>
-<p>Quick spaghetti with tomato sauce.</p>
+<div class="container">
+
+<!-- POSTS -->
+<div id="posts">
+<div class="post" data-cat="breakfast">
+<h2>Air Fryer Pepperoni Pizza Pockets <span class="star">⭐</span></h2>
+<img src="https://via.placeholder.com/700x400">
+<p>Quick comfort breakfast recipe... <a href="#" class="read">Read more</a></p>
 </div>
 
-<div class="recipe-card" data-category="healthy">
-<img src="https://via.placeholder.com/250x180?text=Salad">
-<h2>Garden Salad <span class="star">⭐</span></h2>
-<p>Fresh and healthy vegetables.</p>
+<div class="post" data-cat="dessert">
+<h2>Raspberry Chocolate Truffles <span class="star">⭐</span></h2>
+<img src="https://via.placeholder.com/700x400">
+<p>Sweet dessert for chocolate lovers... <a href="#" class="read">Read more</a></p>
 </div>
 
-<div class="recipe-card" data-category="dessert">
-<img src="https://via.placeholder.com/250x180?text=Cake">
-<h2>Chocolate Cake <span class="star">⭐</span></h2>
-<p>Rich chocolate dessert.</p>
+<div class="post" data-cat="beverage">
+<h2>Pear Vanilla Gin Fizz <span class="star">⭐</span></h2>
+<img src="https://via.placeholder.com/700x400">
+<p>Refreshing drink recipe... <a href="#" class="read">Read more</a></p>
 </div>
-</main>
+</div>
 
-<!-- Popup -->
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<h3>Welcome</h3>
+<p>Your ultimate culinary destination where flavor meets passion.</p>
+<h3>Tags</h3>
+<p>#Chocolate #Cake #Cookies #Beverages</p>
+</aside>
+
+</div>
+
+<!-- POPUP -->
 <div class="popup" id="popup">
 <div class="popup-content">
-<h2 id="popupTitle"></h2>
-<p id="popupText"></p>
-<button onclick="closePopup()">Close</button>
+<h3 id="ptitle"></h3>
+<p>Full recipe details can go here...</p>
+<button onclick="popup.style.display='none'">Close</button>
 </div>
 </div>
 
-<footer>© 2025 Delicious and Easy</footer>
+<footer>© 2025 Yummy Recipes</footer>
 
 <script>
-const search = document.getElementById('search');
-const filter = document.getElementById('filter');
-const cards = document.querySelectorAll('.recipe-card');
-const darkBtn = document.getElementById('darkBtn');
-const popup = document.getElementById('popup');
-const popupTitle = document.getElementById('popupTitle');
-const popupText = document.getElementById('popupText');
+const search=document.getElementById('search');
+const filter=document.getElementById('filter');
+const posts=document.querySelectorAll('.post');
+const popup=document.getElementById('popup');
+const ptitle=document.getElementById('ptitle');
 
-function update() {
-  const text = search.value.toLowerCase();
-  const cat = filter.value;
-  cards.forEach(card => {
-    const title = card.querySelector('h2').textContent.toLowerCase();
-    const category = card.dataset.category;
-    card.style.display = (title.includes(text) && (cat === 'all' || cat === category)) ? 'block' : 'none';
-  });
+function update(){
+ const s=search.value.toLowerCase();
+ const f=filter.value;
+ posts.forEach(p=>{
+  const t=p.innerText.toLowerCase();
+  const c=p.dataset.cat;
+  p.style.display=(t.includes(s)&&(f==='all'||f===c))?'block':'none';
+ })
 }
+search.oninput=update;filter.onchange=update;
 
-search.oninput = update;
-filter.onchange = update;
+// ⭐ Favorites with localStorage
+const savedFavs = JSON.parse(localStorage.getItem('favorites') || '[]');
 
-darkBtn.onclick = () => document.body.classList.toggle('dark');
+posts.forEach(p => {
+  const title = p.querySelector('h2').innerText;
+  const star = p.querySelector('.star');
 
-cards.forEach(card => {
-  const star = card.querySelector('.star');
+  // restore state
+  if (savedFavs.includes(title)) star.classList.add('active');
+
   star.onclick = e => {
     e.stopPropagation();
     star.classList.toggle('active');
+
+    let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (star.classList.contains('active')) {
+      if (!favs.includes(title)) favs.push(title);
+    } else {
+      favs = favs.filter(f => f !== title);
+    }
+    localStorage.setItem('favorites', JSON.stringify(favs));
   };
 
-  card.onclick = () => {
-    popupTitle.textContent = card.querySelector('h2').innerText;
-    popupText.textContent = card.querySelector('p').innerText;
+  p.querySelector('.read').onclick = e => {
+    e.preventDefault();
+    ptitle.innerText = title;
     popup.style.display = 'flex';
   };
 });
 
-function closePopup() {
-  popup.style.display = 'none';
-}
+// dark mode
+document.getElementById('dark').onclick=()=>document.body.classList.toggle('dark');
 </script>
 
 </body>
