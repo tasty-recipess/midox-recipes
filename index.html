@@ -1,178 +1,206 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delicious and Easy</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fffaf0;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delicious and Easy</title>
 
-        header {
-            text-align: center;
-            padding: 70px 20px;
-            background: linear-gradient(90deg, #ffecd1, #ffe6d4);
-        }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #fffaf0;
+    color: #333;
+    transition: 0.3s;
+}
 
-        h1 {
-            font-size: 3.5em;
-            color: #FF5733;
-            margin-bottom: 10px;
-        }
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(90deg, #ffecd1, #ffe6d4);
+}
 
-        h1:hover {
-            color: #FFA500;
-            transform: scale(1.05);
-            transition: all 0.3s ease;
-        }
+h1 {
+    font-size: 3em;
+    color: #FF5733;
+}
 
-        p.tagline {
-            font-size: 1.3em;
-            color: #555;
-        }
+.controls {
+    margin-top: 20px;
+}
 
-        main {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
+.controls input, .controls select, .controls button {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    margin: 5px;
+}
 
-        .recipe-card {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
 
-        .recipe-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-        }
+.recipe-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+}
 
-        .recipe-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
+.recipe-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
 
-        .recipe-card h2 {
-            font-size: 1.4em;
-            margin: 12px 15px 5px;
-            color: #FF5733;
-        }
+.recipe-card h2 {
+    margin: 10px;
+    color: #FF5733;
+}
 
-        .recipe-card p {
-            font-size: 1em;
-            margin: 0 15px 15px;
-            color: #555;
-        }
+.recipe-card p {
+    margin: 10px;
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #ffecd1;
-            color: #555;
-            font-size: 0.9em;
-        }
+.star {
+    float: right;
+    cursor: pointer;
+    opacity: 0.3;
+}
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2.5em;
-            }
-        }
-    </style>
+.star.active { opacity: 1; }
+
+/* Popup */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Dark Mode */
+.dark {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+.dark .recipe-card { background: #2c2c2c; }
+.dark header { background: #333; }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #ffecd1;
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Delicious and Easy</h1>
-        <p class="tagline">Tasty recipes made simple!</p>
-    </header>
 
-    <main>
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Spaghetti" alt="Spaghetti">
-            <h2>Classic Spaghetti</h2>
-            <p>Quick spaghetti with fresh tomato sauce and herbs.</p>
-        </div>
+<header>
+<h1>Delicious and Easy</h1>
+<p>Tasty recipes made simple!</p>
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Salad" alt="Salad">
-            <h2>Fresh Garden Salad</h2>
-            <p>Light and healthy salad with seasonal vegetables.</p>
-        </div>
+<div class="controls">
+<input type="text" id="search" placeholder="Search recipes">
+<select id="filter">
+<option value="all">All</option>
+<option value="main">Main</option>
+<option value="dessert">Dessert</option>
+<option value="healthy">Healthy</option>
+</select>
+<button id="darkBtn">🌙 Dark</button>
+</div>
+</header>
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Chocolate+Cake" alt="Chocolate Cake">
-            <h2>Chocolate Cake</h2>
-            <p>Rich and moist chocolate cake for dessert lovers.</p>
-        </div>
+<main id="recipes">
+<div class="recipe-card" data-category="main">
+<img src="https://via.placeholder.com/250x180?text=Spaghetti">
+<h2>Classic Spaghetti <span class="star">⭐</span></h2>
+<p>Quick spaghetti with tomato sauce.</p>
+</div>
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Grilled+Chicken" alt="Grilled Chicken">
-            <h2>Grilled Chicken</h2>
-            <p>Juicy chicken grilled with herbs and spices.</p>
-        </div>
+<div class="recipe-card" data-category="healthy">
+<img src="https://via.placeholder.com/250x180?text=Salad">
+<h2>Garden Salad <span class="star">⭐</span></h2>
+<p>Fresh and healthy vegetables.</p>
+</div>
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Pancakes" alt="Pancakes">
-            <h2>Fluffy Pancakes</h2>
-            <p>Soft and airy pancakes perfect for breakfast.</p>
-        </div>
+<div class="recipe-card" data-category="dessert">
+<img src="https://via.placeholder.com/250x180?text=Cake">
+<h2>Chocolate Cake <span class="star">⭐</span></h2>
+<p>Rich chocolate dessert.</p>
+</div>
+</main>
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Pizza" alt="Pizza">
-            <h2>Margherita Pizza</h2>
-            <p>Classic pizza with fresh mozzarella and basil.</p>
-        </div>
+<!-- Popup -->
+<div class="popup" id="popup">
+<div class="popup-content">
+<h2 id="popupTitle"></h2>
+<p id="popupText"></p>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Sushi" alt="Sushi">
-            <h2>Salmon Sushi</h2>
-            <p>Delicate salmon sushi rolls with fresh rice and seaweed.</p>
-        </div>
+<footer>© 2025 Delicious and Easy</footer>
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Brownies" alt="Brownies">
-            <h2>Chocolate Brownies</h2>
-            <p>Rich, fudgy brownies for chocolate lovers.</p>
-        </div>
+<script>
+const search = document.getElementById('search');
+const filter = document.getElementById('filter');
+const cards = document.querySelectorAll('.recipe-card');
+const darkBtn = document.getElementById('darkBtn');
+const popup = document.getElementById('popup');
+const popupTitle = document.getElementById('popupTitle');
+const popupText = document.getElementById('popupText');
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Soup" alt="Soup">
-            <h2>Vegetable Soup</h2>
-            <p>Warm and comforting soup with seasonal vegetables.</p>
-        </div>
+function update() {
+  const text = search.value.toLowerCase();
+  const cat = filter.value;
+  cards.forEach(card => {
+    const title = card.querySelector('h2').textContent.toLowerCase();
+    const category = card.dataset.category;
+    card.style.display = (title.includes(text) && (cat === 'all' || cat === category)) ? 'block' : 'none';
+  });
+}
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Burger" alt="Burger">
-            <h2>Classic Burger</h2>
-            <p>Juicy beef burger with fresh lettuce and cheese.</p>
-        </div>
+search.oninput = update;
+filter.onchange = update;
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Smoothie" alt="Smoothie">
-            <h2>Berry Smoothie</h2>
-            <p>Refreshing smoothie with mixed berries and yogurt.</p>
-        </div>
+darkBtn.onclick = () => document.body.classList.toggle('dark');
 
-        <div class="recipe-card">
-            <img src="https://via.placeholder.com/250x180.png?text=Steak" alt="Steak">
-            <h2>Grilled Steak</h2>
-            <p>Perfectly grilled steak with garlic and herbs.</p>
-        </div>
-    </main>
+cards.forEach(card => {
+  const star = card.querySelector('.star');
+  star.onclick = e => {
+    e.stopPropagation();
+    star.classList.toggle('active');
+  };
 
-    <footer>
-        &copy; 2025 Delicious and Easy by Bakka. All rights reserved.
-    </footer>
+  card.onclick = () => {
+    popupTitle.textContent = card.querySelector('h2').innerText;
+    popupText.textContent = card.querySelector('p').innerText;
+    popup.style.display = 'flex';
+  };
+});
+
+function closePopup() {
+  popup.style.display = 'none';
+}
+</script>
+
 </body>
 </html>
