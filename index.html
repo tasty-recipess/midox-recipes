@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohamed's Recipes</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #f6f6f6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #ff7043, #ff5722);
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #ff5722;
+        }
+        nav a {
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            background: #e64a19;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+        .recipe {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+        .recipe:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        }
+        .recipe img {
+            width: 100%;
+            border-radius: 12px;
+        }
+        h2 {
+            color: #e64a19;
+            margin: 0;
+            font-size: 24px;
+        }
+        .btn {
+            display: inline-block;
+            background: #ff7043;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            width: fit-content;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #e64a19;
+        }
+        footer {
+            background:#333; 
+            color:white; 
+            text-align:center; 
+            padding:20px; 
+            margin-top:40px; 
+            font-size:14px;
+        }
+        .about, .contact {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .contact input, .contact textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            font-size: 14px;
+        }
+        .contact button {
+            background: #ff7043;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .contact button:hover {
+            background: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <header>Mohamed's Recipes</header><nav>
+    <a href="#home">Home</a>
+    <a href="#recipes">Recipes</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="container" id="home">
+    <h1 style="text-align:center; color:#ff5722;">Welcome to Mohamed's Recipes</h1>
+    <p style="text-align:center; font-size:16px; color:#555;">Explore delicious recipes and cooking tips from around the world.</p>
+</div>
+
+<div class="container" id="recipes">
+    <div class="recipe">
+        <h2>Recipe 1: Dish Name</h2>
+        <img src="https://via.placeholder.com/600x400" alt="Recipe Image">
+        <p>Write your cooking recipe here in a clear and modern style.</p>
+        <a class="btn" href="#">Read Full Recipe</a>
+    </div>
+
+    <div class="recipe">
+        <h2>Recipe 2: Dish Name</h2>
+        <img src="https://via.placeholder.com/600x400" alt="Recipe Image">
+        <p>Write your second recipe here with a clean and stylish format.</p>
+        <a class="btn" href="#">Read Full Recipe</a>
+    </div>
+</div>
+
+<div class="container about" id="about">
+    <h2>About Mohamed's Recipes</h2>
+    <p>Mohamed's Recipes is dedicated to sharing the best and easiest recipes for all types of cuisine. Whether you are a beginner or a professional cook, you will find inspiration and guidance here.</p>
+</div>
+
+<div class="container contact" id="contact">
+    <h2>Contact Us</h2>
+    <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</div>
+
+<footer>
+    © 2025 Mohamed's Recipes – All Rights Reserved
+</footer>
+
+</body>
+  </html>
